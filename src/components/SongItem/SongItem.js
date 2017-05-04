@@ -10,7 +10,7 @@ const SongItem = (props) => {
 	return (
 		<div className={styles.root}>
 			<div className={styles.album}>
-				<img role="presentation" src={albumImage.url} />
+				<img role="presentation" src={albumImage.url} className={styles.image} />
 				<span className={styles.albumName}>{albumName}</span>
 			</div>
 			<div className={styles.songAndDescription}>

@@ -18,14 +18,18 @@ eachSong.propTypes = {
 	name: PropTypes.string,
 };
 
-const SongList = (props) => (
-	<div className={styles.root}>
-		{props.listOfSongs.map((songData, index) => <div
-			key={songData.uri} 
-			onClick={() => props.selectSong(index)}
-		>{eachSong(songData)}</div>)}
-	</div>
-);
+const SongList = (props) => {
+	
+	return (
+		<div className={styles.root}>
+			{console.log("props: " + props)}
+			{props.listOfSongs.map((songData, index) => <div
+				key={songData.uri} 
+				onClick={() => props.selectSong(index)}
+			>{eachSong(songData)}</div>)}
+		</div>
+	);
+};
 
 SongList.propTypes = {
 	listOfSongs: PropTypes.array,

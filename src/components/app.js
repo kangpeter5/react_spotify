@@ -17,22 +17,25 @@ export default class App extends Component {
   }
 
   fetchSongs = () => {
-    searchSpotify(this.state.song)
+    searchSpotify(this.state.song).then(({ tracks }) => this.setState({ tracks }));
       // { tracks: tracks } = { tracks } since the value's and key's names
       // are the same you can get rid of the value and just keep the key
-      .then(({ tracks }) => this.setState({ tracks }));
   }
 
   render() {
     const { tracks, songPosition } = this.state;
-    console.log ('tracks', tracks);
 
     return (
       <div className={styles.root}>
-        <SearchBar updateText={(song) => this.setState({ song })} fetchSongs={this.fetchSongs} />
+        <SearchBar 
+          updateText={(song) => this.setState({ song })} 
+          fetchSongs={this.fetchSongs} 
+        />
         {tracks.items && <SongItem songData={tracks.items[songPosition]} />}
-        {tracks.items && <SongList listOfSongs={tracks.items} selectSong={(songPosition) => this.setState({ songPosition })} />}
-        <SongList />
+        {tracks.items && <SongList 
+          listOfSongs={tracks.items} 
+          selectSong={(songPosition) => this.setState({ songPosition })} 
+        />}
       </div>
     );
   }
